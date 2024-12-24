@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Woi Woi </title>
+
+    <style>
+        /* Basic reset for padding and margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set the background image for the entire page */
+body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container for the main content */
+        .container {
+            text-align: center;
+            background-color: rgba(235, 105, 166, 0.74);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid #d878b8;
+            box-shadow: 0 15px 16px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* Floating Hearts */
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            transform: rotate(45deg);
+            animation: float-hearts 6s ease-in infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float-hearts {
+            0% {
+                transform: translateY(100vh) scale(0.5) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Random positions for hearts */
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 3s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 1s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 5s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 0.5s; }
+
+        /* Align buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        
+
+
+
+/* Button Styles */
+button {
+            padding: 12px 25px;
+            font-size: 1.2em;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+
+/* Yes and Gift Buttons with Different Colors */
+#yesButton {
+    background-color: #2ecc71; /* Green for Yes button */
+}
+
+#giftButton {
+    background-color: #f39c12; /* Orange for Gift button */
+}
+
+/* No Button Styling */
+#noButton {
+    background-color: #e74c3c; /* Red for No button */
+    position: relative; /* Initially relative for alignment */
+}
+
+/* Yes button hover hearts effect */
+#yesButton:hover::before,
+#yesButton:hover::after {
+    content: "💗";
+    position: absolute;
+    font-size: 1.5em;
+    animation: float-heart 1.5s ease infinite;
+}
+
+@keyframes float-heart {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) translateY(-20px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5) translateY(-50px);
+    }
+}
+
+ /* Popup styling */
+ .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .popup-image {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            border-radius: 8px;
+        }
+
+        #closePopup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #closePopup:hover {
+            color: red;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+ 
+/* Media Queries for Small Devices */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    
+
+    .container {
+        padding: 20px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .popup-image {
+        max-width: 100%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>dandandanda</h1>
+        <div class="button-container">
+            <button id="yesButton">Yes</button>
+            <button id="noButton">No</button>
+            <button id="giftButton">Gift 🎁</button>
+        </div>
+    </div>
+
+    <!-- Popup modal for images -->
+    <div id="popup" class="popup hidden">
+        <span id="closePopup">&times;</span>
+        <img id="popupImage" src="" alt="Image" class="popup-image">
+    </div>
+
+    <!-- js script -->
+
+    <script>
+        // Select the buttons
+const yesButton = document.getElementById('yesButton');
+const noButton = document.getElementById('noButton');
+const giftButton = document.getElementById('giftButton');
+const popup = document.getElementById('popup');
+const popupImage = document.getElementById('popupImage');
+const closePopup = document.getElementById('closePopup');
+
+// yes btn img
+const yesImages = [
+    'wD.jpg',  
+    'rD.jpg',
+    
+];
+
+// list of gift img
+const giftImages = [
+    'KEK.jpg',  
+   // 'gift2.jpg',
+   // 'gift3.jpg',
+    //'gift4.jpg',
+    //'gift5.jpg'
+];
+
+// yes btn click
+yesButton.addEventListener('click', function() {
+    const randomImage = yesImages[Math.floor(Math.random() * yesImages.length)];
+    popupImage.src = randomImage;
+    popup.style.display = 'block';
+});
+
+// Add event listener to "No" button that makes it move around on hover or click
+noButton.addEventListener('mouseover', moveNoButton);
+noButton.addEventListener('click', moveNoButton);
+
+function moveNoButton() {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    const buttonWidth = noButton.offsetWidth;
+    const buttonHeight = noButton.offsetHeight;
+
+    // Generate random positions for the button within the screen
+    const randomX = Math.floor(Math.random() * (windowWidth - buttonWidth));
+    const randomY = Math.floor(Math.random() * (windowHeight - buttonHeight));
+
+    // Apply new random position to the No button
+    noButton.style.position = 'absolute';
+    noButton.style.left = `${randomX}px`;
+    noButton.style.top = `${randomY}px`;
+}
+
+// Gift button image popup functionality
+giftButton.addEventListener('click', function() {
+    const randomImage = giftImages[Math.floor(Math.random() * giftImages.length)];
+    popupImage.src = randomImage;
+    popup.style.display = 'block';
+});
+
+// Close the popup when "X" is clicked
+closePopup.addEventListener('click', function() {
+    popup.style.display = 'none';
+});
+
+
+    </script>
+</body>
+</html>
