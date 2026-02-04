@@ -1,255 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Woi Woi </title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Woi Woi</title>
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(120deg, #f093fb, #f5576c);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(120deg, #f093fb, #f5576c);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
 
-        .container {
-            text-align: center;
-            background-color: rgba(235, 105, 166, 0.85);
-            padding: 50px;
-            border-radius: 20px;
-            border: 1px solid #d878b8;
-            box-shadow: 0 15px 16px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 90%;
-            animation: fadeIn 1s ease-in-out;
-        }
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
+.container {
+    text-align: center;
+    background-color: rgba(235, 105, 166, 0.85);
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid #d878b8;
+    box-shadow: 0 15px 16px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 1s ease-in-out;
+    z-index: 10;
+}
 
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5em;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
 
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            gap: 15px;
-        }
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.3em;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
 
-        button {
-            padding: 12px 25px;
-            font-size: 1.2em;
-            font-family: 'Poppins', sans-serif;
-            color: rgb(255, 255, 255);
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            transition: all 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
-        }
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
 
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        }
+button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
 
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
-            opacity: 0;
-        }
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
 
-        button:hover::before {
-            left: 0%;
-            opacity: 1;
-        }
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
 
-        #yesButton {
-            background: linear-gradient(45deg, #2ecc71, #a8e063);
-        }
-       /* No Button Styling */
-       #noButton {
-          background-color: #050100; /* Red for No button */
-          position: relative; /* Initially relative for alignment */
-        }
-        
-        #giftButton {
-            background: linear-gradient(45deg, #f39c12, #f1c40f);
-        }
-         
-        /* Yes button hover hearts effect */
-#yesButton:hover::before,
+button:hover::before {
+    left: 0%;
+    opacity: 1;
+}
+
+/* YES button */
+#yesButton {
+    background: linear-gradient(45deg, #2ecc71, #a8e063);
+}
+
+/* YES hover hearts */
 #yesButton:hover::after {
     content: "💗";
     position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     font-size: 1.5em;
     animation: float-heart 1.5s ease infinite;
 }
 
 @keyframes float-heart {
-    0% {
-        opacity: 0;
-        transform: scale(0.5) translateY(0);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.2) translateY(-20px);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(1.5) translateY(-50px);
-    }
+    0% { opacity: 0; transform: translate(-50%, 0) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%, -20px) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -50px) scale(1.5); }
 }
 
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            z-index: 1000;
-            display: none;
-            animation: popupFadeIn 0.5s ease-in-out;
-        }
+/* NO button */
+#noButton {
+    background-color: #050100;
+    position: relative;
+}
 
-        @keyframes popupFadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
+/* GIFT button */
+#giftButton {
+    background: linear-gradient(45deg, #f39c12, #f1c40f);
+}
 
-        .popup-image {
-            width: 100%; /* Full width of container */
-            height: auto;
-            max-width: 500px; /* Control maximum width */
-            max-height: 300px; /* Optional: Control maximum height */
-            border-radius: 8px;
-            animation: scaleUp 0.5s ease;
-        }
+/* POPUP */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+    border-radius: 12px;
+    z-index: 1000;
+    display: none;
+    animation: popupFadeIn 0.5s ease-in-out;
+    text-align: center;
+    backdrop-filter: blur(6px);
+}
 
-        @keyframes scaleUp {
-            from { transform: scale(0.8); }
-            to { transform: scale(1); }
-        }
+@keyframes popupFadeIn {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
 
-        #closePopup {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-        }
+.popup-image {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 8px;
+    animation: scaleUp 0.5s ease;
+}
 
-        #closePopup:hover {
-            color: red;
-        }
-    </style>
+@keyframes scaleUp {
+    from { transform: scale(0.85); }
+    to { transform: scale(1); }
+}
+
+#popupText {
+    color: white;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+#closePopup {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+}
+
+#closePopup:hover {
+    color: red;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>My heart has only one update left: 'In a relationship with you.' Will you say yes?</h1>
-        <div class="button-container">
-            <button id="yesButton">Yes</button>
-            <button id="noButton">No</button>
-            <button id="giftButton">Gift 🎁</button>
-        </div>
+
+<div class="container">
+    <h1>My heart has only one update left:  
+    <br>'In a relationship with you.'  
+    <br>Will you say yes?</h1>
+
+    <div class="button-container">
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+        <button id="giftButton">Gift 🎁</button>
     </div>
+</div>
 
-    <div id="popup" class="popup">
-        <span id="closePopup">&times;</span>
-        <img id="popupImage" src="" alt="Image" class="popup-image">
-    </div>
+<!-- POPUP -->
+<div id="popup" class="popup">
+    <span id="closePopup">&times;</span>
+    <img id="popupImage" class="popup-image" src="">
+    <p id="popupText"></p>
+</div>
 
-    <script>
-        const yesButton = document.getElementById('yesButton');
-        const noButton = document.getElementById('noButton');
-        const giftButton = document.getElementById('giftButton');
-        const popup = document.getElementById('popup');
-        const popupImage = document.getElementById('popupImage');
-        const closePopup = document.getElementById('closePopup');
+<!-- AUDIO -->
+<audio id="noSound" src="ehe-te-nandayo.mp3" preload="auto"></audio>
 
-        const correctImage = 'rD.jpg';
-        const wrongImage = 'wD.jpg';
+<script>
+const yesButton = document.getElementById('yesButton');
+const noButton = document.getElementById('noButton');
+const giftButton = document.getElementById('giftButton');
+const popup = document.getElementById('popup');
+const popupImage = document.getElementById('popupImage');
+const popupText = document.getElementById('popupText');
+const closePopup = document.getElementById('closePopup');
+const sound = document.getElementById('noSound');
 
-        // Yes Button Behavior
-        yesButton.addEventListener('click', function () {
-            popupImage.src = wrongImage;
-            popup.style.display = 'block';
+const correctImage = 'rD.jpg';
+const wrongImage = 'wD.jpg';
 
-            setTimeout(() => {
-                alert('Ohhhuuuh wrong img🫢');
-                popupImage.src = correctImage;
-            }, 1000);
-        });
+/* YES BUTTON */
+yesButton.addEventListener('click', () => {
+    popupImage.src = wrongImage;
+    popupText.textContent = "Wait… wrong image 🫢";
+    popup.style.display = 'block';
 
-        // Add event listener to "No" button that makes it move around on hover or click
+    setTimeout(() => {
+        popupImage.src = correctImage;
+        popupText.textContent = "Yeah… this feels right 💗";
+    }, 1000);
+});
+
+/* NO BUTTON — ORIGINAL BEHAVIOR (SAFE) */
+function moveNoButton() {
+    sound.currentTime = 0;
+    sound.play().catch(()=>{});
+
+    const btnWidth = noButton.offsetWidth;
+    const btnHeight = noButton.offsetHeight;
+
+    const maxX = window.innerWidth - btnWidth - 10;
+    const maxY = window.innerHeight - btnHeight - 10;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noButton.style.position = 'absolute';
+    noButton.style.left = randomX + 'px';
+    noButton.style.top = randomY + 'px';
+}
+
 noButton.addEventListener('mouseover', moveNoButton);
 noButton.addEventListener('click', moveNoButton);
 
-function moveNoButton() {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+/* GIFT BUTTON */
+giftButton.addEventListener('click', () => {
+    popupImage.src = 'KEK.jpg';
+    popupText.textContent = "A little surprise for you 🎁";
+    popup.style.display = 'block';
+});
 
-    const buttonWidth = noButton.offsetWidth;
-    const buttonHeight = noButton.offsetHeight;
+/* CLOSE POPUP */
+closePopup.addEventListener('click', () => {
+    popup.style.display = 'none';
+});
+</script>
 
-    // Generate random positions for the button within the screen
-    const randomX = Math.floor(Math.random() * (windowWidth - buttonWidth));
-    const randomY = Math.floor(Math.random() * (windowHeight - buttonHeight));
-
-    // Apply new random position to the No button
-    noButton.style.position = 'absolute';
-    noButton.style.left = `${randomX}px`;
-    noButton.style.top = `${randomY}px`;
-}
-
-        // Gift Button Behavior
-        giftButton.addEventListener('click', function () {
-            const giftImages = ['KEK.jpg'];
-            popupImage.src = giftImages[0];
-            popup.style.display = 'block';
-        });
-
-        // Close Popup
-        closePopup.addEventListener('click', function () {
-            popup.style.display = 'none';
-        });
-    </script>
 </body>
 </html>
-
