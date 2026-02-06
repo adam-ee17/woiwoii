@@ -3,271 +3,305 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Woi Woi</title>
+<title>Woi Woi 💗</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Poppins,system-ui,sans-serif;
+  height:100vh;
+  overflow:hidden;
+  background:linear-gradient(120deg,#e23737,#dd4b94);
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(120deg, #f093fb, #f5576c);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+/* ===== LOADER ===== */
+#loader{
+  position:fixed;inset:0;
+  background:linear-gradient(120deg,#ffffff,#ffffff);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  color:#fff;
+}
+.loader-heart{
+  width:64px;height:64px;
+  background:#f20044;
+  transform:rotate(-45deg);
+  animation:pulse .6s ease-in-out infinite;
+  position:relative;
+}
+.loader-heart::before,.loader-heart::after{
+  content:"";
+  position:absolute;
+  width:64px;height:64px;
+  background:#f20044;
+  border-radius:50%;
+}
+.loader-heart::before{top:-50%}
+.loader-heart::after{right:-50%}
+@keyframes pulse{
+  0%,100%{transform:rotate(-45deg) scale(1)}
+  50%{transform:rotate(-45deg) scale(1.15)}
+}
+.explode{
+  animation:boom .5s ease forwards!important;
+}
+@keyframes boom{
+  to{transform:scale(5) rotate(-45deg);opacity:0}
+}
+#percent{margin-top:12px;font-size:2em}
+
+/* ===== BACKGROUND FLOAT ===== */
+.bg-float{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  opacity:.25;
+  animation:floatUp linear infinite;
+  pointer-events:none;
+}
+@keyframes floatUp{
+  to{transform:translateY(-120vh)}
 }
 
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* ===== MAIN CARD ===== */
+.container{
+  background:rgba(201,12,59,.85);
+  padding:45px;
+  border-radius:20px;
+  text-align:center;
+  max-width:420px;
+  width:90%;
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+  display:none;
+}
+h1{color:#fff;font-size:2em}
+
+/* ===== BUTTONS ===== */
+.buttons{
+  display:flex;
+  gap:15px;
+  margin-top:30px;
+  justify-content:space-between;
+}
+button{
+  padding:12px 25px;
+  font-size:1.1em;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  transition:.2s;
+}
+#yes{
+  background:linear-gradient(45deg,#2ecc71,#a8e063);
+  color:#fff;
+}
+#gift{
+  background:linear-gradient(45deg,#f39c12,#f1c40f);
+}
+#no{
+  background:#050100;
+  color:#fff;
 }
 
-.container {
-    text-align: center;
-    background-color: rgba(235, 105, 166, 0.85);
-    padding: 50px;
-    border-radius: 20px;
-    border: 1px solid #d878b8;
-    box-shadow: 0 15px 16px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 90%;
-    animation: fadeIn 1s ease-in-out;
-    z-index: 10;
+/* ===== HEART BURST ===== */
+.burst{
+  position:absolute;
+  pointer-events:none;
+  font-size:16px;
+  animation:burst .7s ease forwards;
+}
+@keyframes burst{
+  to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+/* ===== POPUP ===== */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:50;
 }
+.card{
+  background:#111;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+}
+.card img{max-width:300px;border-radius:10px}
+.card p{margin-top:10px;color:#fff}
 
-h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.3em;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    gap: 15px;
-}
-
-button {
-    padding: 12px 25px;
-    font-size: 1.2em;
-    font-family: 'Poppins', sans-serif;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    overflow: hidden;
-}
-
-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(45deg);
-    transition: all 0.5s ease;
-    opacity: 0;
-}
-
-button:hover::before {
-    left: 0%;
-    opacity: 1;
-}
-
-/* YES button */
-#yesButton {
-    background: linear-gradient(45deg, #2ecc71, #a8e063);
-}
-
-/* YES hover hearts */
-#yesButton:hover::after {
-    content: "💗";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5em;
-    animation: float-heart 1.5s ease infinite;
-}
-
-@keyframes float-heart {
-    0% { opacity: 0; transform: translate(-50%, 0) scale(0.5); }
-    50% { opacity: 1; transform: translate(-50%, -20px) scale(1.2); }
-    100% { opacity: 0; transform: translate(-50%, -50px) scale(1.5); }
-}
-
-/* NO button */
-#noButton {
-    background-color: #050100;
-    position: relative;
-}
-
-/* GIFT button */
-#giftButton {
-    background: linear-gradient(45deg, #f39c12, #f1c40f);
-}
-
-/* POPUP */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 20px;
-    border-radius: 12px;
-    z-index: 1000;
-    display: none;
-    animation: popupFadeIn 0.5s ease-in-out;
-    text-align: center;
-    backdrop-filter: blur(6px);
-}
-
-@keyframes popupFadeIn {
-    from { opacity: 0; transform: translate(-50%, -60%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-.popup-image {
-    width: 100%;
-    max-width: 320px;
-    border-radius: 8px;
-    animation: scaleUp 0.5s ease;
-}
-
-@keyframes scaleUp {
-    from { transform: scale(0.85); }
-    to { transform: scale(1); }
-}
-
-#popupText {
-    color: white;
-    margin-top: 10px;
-    font-size: 1.1em;
-}
-
-#closePopup {
-    position: absolute;
-    top: 10px;
-    right: 14px;
-    font-size: 26px;
-    color: white;
-    cursor: pointer;
-}
-
-#closePopup:hover {
-    color: red;
-}
+audio{display:none}
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>My heart has only one update left:  
-    <br>'In a relationship with you.'  
-    <br>Will you say yes?</h1>
-
-    <div class="button-container">
-        <button id="yesButton">Yes</button>
-        <button id="noButton">No</button>
-        <button id="giftButton">Gift 🎁</button>
-    </div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-heart" id="lHeart"></div>
+  <div id="percent">1%</div>
 </div>
 
-<!-- POPUP -->
-<div id="popup" class="popup">
-    <span id="closePopup">&times;</span>
-    <img id="popupImage" class="popup-image" src="">
+<!-- MAIN -->
+<div class="container" id="main">
+  <h1>My heart has one update left…<br>Will you say yes? 💗</h1>
+  <div class="buttons">
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+    <button id="gift">Gift 🎁</button>
+  </div>
+</div>
+
+<div class="popup" id="popup">
+  <div class="card">
+    <img id="popupImg">
     <p id="popupText"></p>
+  </div>
 </div>
 
-<!-- AUDIO -->
 <audio id="noSound" src="ehe-te-nandayo.mp3" preload="auto"></audio>
 
 <script>
-const yesButton = document.getElementById('yesButton');
-const noButton = document.getElementById('noButton');
-const giftButton = document.getElementById('giftButton');
-const popup = document.getElementById('popup');
-const popupImage = document.getElementById('popupImage');
-const popupText = document.getElementById('popupText');
-const closePopup = document.getElementById('closePopup');
-const sound = document.getElementById('noSound');
-
-const correctImage = 'rD.jpg';
-const wrongImage = 'wD.jpg';
-
-/* YES BUTTON */
-yesButton.addEventListener('click', () => {
-    popupImage.src = wrongImage;
-    popupText.textContent = "Wait… wrong image 🫢";
-    popup.style.display = 'block';
-
-    setTimeout(() => {
-        popupImage.src = correctImage;
-        popupText.textContent = "Yeah… this feels right 💗";
-    }, 1000);
-});
-
-/* NO BUTTON — ORIGINAL BEHAVIOR (SAFE) */
-function moveNoButton() {
-    sound.currentTime = 0;
-    sound.play().catch(()=>{});
-
-    const btnWidth = noButton.offsetWidth;
-    const btnHeight = noButton.offsetHeight;
-
-    const maxX = window.innerWidth - btnWidth - 10;
-    const maxY = window.innerHeight - btnHeight - 10;
-
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-
-    noButton.style.position = 'absolute';
-    noButton.style.left = randomX + 'px';
-    noButton.style.top = randomY + 'px';
+/* ===== BACKGROUND FLOAT ===== */
+const emojis=["💗","💕","✨","🌸","🥺"];
+const floatCount=innerWidth<600?8:14;
+for(let i=0;i<floatCount;i++){
+  const e=document.createElement("div");
+  e.className="bg-float";
+  e.textContent=emojis[Math.random()*emojis.length|0];
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=12+Math.random()*10+"s";
+  document.body.appendChild(e);
 }
 
-noButton.addEventListener('mouseover', moveNoButton);
-noButton.addEventListener('click', moveNoButton);
+/* ===== LOADER ===== */
+const steps=[1,30,45,69,96,100];
+let si=0;
+const percent=document.getElementById("percent");
+const heart=document.getElementById("lHeart");
+const loader=document.getElementById("loader");
+const main=document.getElementById("main");
 
-/* GIFT BUTTON */
-giftButton.addEventListener('click', () => {
-    popupImage.src = 'KEK.jpg';
-    popupText.textContent = "A little surprise for you 🎁";
-    popup.style.display = 'block';
+(function next(){
+  percent.textContent=steps[si]+"%";
+  if(steps[si]===69){
+    setTimeout(()=>{si++;next()},1200);
+  }else if(steps[si]===100){
+    heart.classList.add("explode");
+    setTimeout(()=>{
+      loader.remove();
+      main.style.display="block";
+    },500);
+  }else{
+    setTimeout(()=>{si++;next()},500);
+  }
+})();
+
+/* ===== AUDIO UNLOCK ===== */
+const sound=document.getElementById("noSound");
+let audioUnlocked=false;
+addEventListener("click",()=>{
+  if(!audioUnlocked){
+    sound.play().then(()=>sound.pause()).catch(()=>{});
+    audioUnlocked=true;
+  }
+},{once:true});
+
+/* ===== ELEMENTS ===== */
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const gift=document.getElementById("gift");
+const popup=document.getElementById("popup");
+const img=document.getElementById("popupImg");
+const text=document.getElementById("popupText");
+
+/* ===== HEART BURST ===== */
+function heartBurst(btn){
+  for(let i=0;i<6;i++){
+    const h=document.createElement("div");
+    h.className="burst";
+    h.textContent="💗";
+    const r=btn.getBoundingClientRect();
+    h.style.left=r.left+r.width/2+"px";
+    h.style.top=r.top+r.height/2+"px";
+    h.style.setProperty("--x",(Math.random()*120-60)+"px");
+    h.style.setProperty("--y",(Math.random()*120-60)+"px");
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),700);
+  }
+}
+
+/* ===== YES ===== */
+yes.onclick=()=>{
+  heartBurst(yes);
+  popup.style.display="flex";
+  img.src="wD.jpg";
+  text.textContent="Wait… wrong image 🫢";
+  setTimeout(()=>{
+    img.src="rD.jpg";
+    text.textContent="Yeah… this feels right 💗";
+  },6000);
+};
+
+/* ===== GIFT ===== */
+gift.onclick=()=>{
+  popup.style.display="flex";
+  img.src="KEK.jpg";
+  text.textContent="A little surprise 🎁";
+};
+
+/* ===== NO BUTTON ===== */
+let lastSound=0;
+let noActivated=false;
+
+function moveNo(){
+  if(!noActivated){
+    noActivated=true;
+    no.style.position="fixed";
+  }
+
+  const now=Date.now();
+  if(now-lastSound>200){
+    sound.currentTime=0;
+    sound.play().catch(()=>{});
+    lastSound=now;
+  }
+
+  const btnW=no.offsetWidth;
+  const btnH=no.offsetHeight;
+
+  const maxX=window.innerWidth-btnW-10;
+  const maxY=window.innerHeight-btnH-10;
+
+  const x=Math.random()*maxX;
+  const y=Math.random()*maxY;
+
+  no.style.left=x+"px";
+  no.style.top=y+"px";
+}
+
+/* PC chase */
+document.addEventListener("mousemove",e=>{
+  const r=no.getBoundingClientRect();
+  const dx=e.clientX-(r.left+r.width/2);
+  const dy=e.clientY-(r.top+r.height/2);
+  if(Math.hypot(dx,dy)<120) moveNo();
 });
 
-/* CLOSE POPUP */
-closePopup.addEventListener('click', () => {
-    popup.style.display = 'none';
-});
+/* Mobile + click */
+no.addEventListener("touchstart",moveNo);
+no.addEventListener("click",moveNo);
+
+popup.onclick=()=>popup.style.display="none";
 </script>
 
 </body>
